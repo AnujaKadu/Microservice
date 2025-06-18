@@ -7,7 +7,7 @@ pipeline {
         DOCKER_CREDENTIALS_ID = 'Docker-sec' 
     }
     tools {
-        dockerTool 'dockerTool'
+        dockerTool 'docker'
     }
     stages {
         stage('Build & Tag Docker Image') {
