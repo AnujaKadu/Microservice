@@ -1,7 +1,6 @@
 pipeline {
     agent any
-
-     environment {
+    environment {
         KUBECONFIG='/Users/anujakadu/.kube/config'
      }
      stages {
