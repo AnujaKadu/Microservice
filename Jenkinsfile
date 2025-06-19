@@ -1,22 +1,25 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Deploy To Kubernetes') {
+     environment {
+        KUBECONFIG='/Users/anujakadu/.kube/config'
+     }
+       stage('Run kubectl') {
             steps {
-                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'EKS-1', contextName: '', credentialsId: 'k8-token', namespace: 'webapps', serverUrl: 'https://9F39F577334FF23706994135261985F2.gr7.ap-south-1.eks.amazonaws.com']]) {
-                    sh "kubectl apply -f deployment-service.yml"
+                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-8', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://127.0.0.1:54562') {
+                    echo "Connected to k8"
+                    sh "kubectl apply -f deployment-service.yaml"
                     
                 }
             }
         }
-        
-        stage('verify Deployment') {
+        stage('Verify the Deployment') {
             steps {
-                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'EKS-1', contextName: '', credentialsId: 'k8-token', namespace: 'webapps', serverUrl: 'https://9F39F577334FF23706994135261985F2.gr7.ap-south-1.eks.amazonaws.com']]) {
-                    sh "kubectl get svc -n webapps"
+               withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'kube-8', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://127.0.0.1:54562') {
+                        sh "kubectl get pods -n webapps"
+                        sh "kubectl get svc -n webapps"
                 }
             }
-        }
+        }    
+        
     }
-}
