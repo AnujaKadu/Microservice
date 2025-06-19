@@ -4,6 +4,7 @@ pipeline {
      environment {
         KUBECONFIG='/Users/anujakadu/.kube/config'
      }
+     stages {
        stage('Run kubectl') {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kube-8', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://127.0.0.1:54562') {
@@ -23,3 +24,4 @@ pipeline {
         }    
         
     }
+}
