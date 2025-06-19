@@ -1,5 +1,5 @@
 pipeline {
-    agent 
+    agent any
     environment {
         DOCKER_HOST = 'unix:///var/run/docker.sock'
         DOCKER_REGISTRY = 'https://index.docker.io/v1/'
