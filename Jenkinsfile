@@ -3,7 +3,7 @@ pipeline {
     environment {
         DOCKER_HOST = 'unix:///var/run/docker.sock'
         DOCKER_REGISTRY = 'https://index.docker.io/v1/'
-        DOCKER_CREDENTIALS_ID = 'Docker-cred' 
+        DOCKER_CREDENTIALS_ID = 'docker-cred' 
     }
     tools {
         dockerTool 'docker'
