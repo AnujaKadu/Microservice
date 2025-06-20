@@ -1,7 +1,8 @@
 pipeline {
     agent any
-    environment {
-        KUBECONFIG='PATH'
+
+     environment {
+        KUBECONFIG='/Users/anujakadu/.kube/config'
      }
      stages {
        stage('Run kubectl') {
