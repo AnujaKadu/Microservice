@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-          image 'bitnami/kubectl:latest'
-        }
-    }
+    agent any
 
      environment {
         KUBECONFIG='/Users/anujakadu/.kube/config'
@@ -12,6 +8,15 @@ pipeline {
         KUBERNETES_CREDENTIALS_ID= 'kube-8' 
      }
      stages {
+        stage('Check kubectl') {
+            steps {
+                sh '''
+                    echo "Checking kubectl availability..."
+                    which kubectl || echo "kubectl not found"
+                    echo "PATH: $PATH"
+                '''
+            }
+        }
        stage('Run kubectl') {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: KUBERNETES_CREDENTIALS_ID, namespace: NAMESPACE, restrictKubeConfigAccess: false, serverUrl: KUBERNETES_URL) {
