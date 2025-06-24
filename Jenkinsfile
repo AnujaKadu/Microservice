@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -11,9 +10,9 @@ pipeline {
      stages {
        stage('Run kubectl') {
             steps {
-                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: KUBERNETES_CREDENTIALS_ID, namespace: NAMESPACE, restrictKubeConfigAccess: false, serverUrl: KUBERNETES_URL) {
+                withKubeConfig(caCertificate: '', clusterName: 'kind-kind-multi-node', contextName: '', credentialsId: KUBERNETES_CREDENTIALS_ID, namespace: NAMESPACE, restrictKubeConfigAccess: false, serverUrl: KUBERNETES_URL) {
                     echo "Connected to k8"
-                    sh "kubectl apply -f deployment-service.yml"
+                    sh "kubectl apply -f deployment-service.yaml"
                     
                 }
             }
