@@ -5,7 +5,7 @@ pipeline {
         KUBECONFIG='/Users/anujakadu/.kube/config'
         KUBERNETES_URL='https://127.0.0.1:54562'
         NAMESPACE= 'webapps'
-        KUBERNETES_CREDENTIALS_ID = 'kube-8' 
+        KUBERNETES_CREDENTIALS_ID= 'kube-8' 
      }
      stages {
        stage('Run kubectl') {
