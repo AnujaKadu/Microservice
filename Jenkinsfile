@@ -6,6 +6,7 @@ pipeline {
         KUBERNETES_URL='https://127.0.0.1:545'
         NAMESPACE= 'webapps'
         KUBERNETES_CREDENTIALS_ID= 'kube-8' 
+        PATH = "/usr/local/bin:$PATH"
      }
      stages {
         stage('Check kubectl') {
