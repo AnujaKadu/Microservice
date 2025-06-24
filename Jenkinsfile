@@ -9,7 +9,7 @@ pipeline {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: 'kind-kind-multi-node', contextName: '', credentialsId: 'kube-8', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://127.0.0.1:49226') {
                     echo "Connected to k8"
-                    sh "kubectl apply -f deployment-service.yaml"
+                    sh "kubectl apply -f deployment-service.yml"
                     
                 }
             }
