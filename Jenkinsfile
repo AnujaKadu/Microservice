@@ -3,28 +3,13 @@ pipeline {
 
      environment {
         KUBECONFIG= '/Users/anujakadu/.kube/config'
-        KUBERNETES_URL= 'https://127.0.0.1:54562'
-        NAMESPACE= 'webapps'
-        KUBERNETES_CREDENTIALS_ID= 'kube-8' 
+        KUBERNETES_URL= 'https://127.0.0.1:57253'
+        NAMESPACE= 'test'
+        KUBERNETES_CREDENTIALS_ID= 'test' 
         PATH = "/usr/local/bin:$PATH"
      }
      
      stages {
-        stage('Verify K8s Connection') {
-      steps {
-        withKubeConfig(
-          credentialsId: 'kube-8',
-          serverUrl: 'https://127.0.0.1:54562',
-          namespace: 'webapps'
-        ) {
-          sh '''
-            echo "Using Kubeconfig"
-            kubectl version
-            kubectl get pods -n webapps
-          '''
-        }
-      }
-    }
         stage('Check kubectl') {
             steps {
                 sh '''
