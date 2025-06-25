@@ -8,8 +8,9 @@ pipeline {
         KUBERNETES_CREDENTIALS_ID= 'kube-8' 
         PATH = "/usr/local/bin:$PATH"
      }
+     
      stages {
-    stage('Verify K8s Connection') {
+        stage('Verify K8s Connection') {
       steps {
         withKubeConfig(
           credentialsId: 'kube-8',
@@ -24,8 +25,6 @@ pipeline {
         }
       }
     }
-  }
-     stages {
         stage('Check kubectl') {
             steps {
                 sh '''
