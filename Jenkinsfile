@@ -14,7 +14,7 @@ pipeline {
       steps {
         withKubeConfig(
           credentialsId: 'kube-8',
-          serverUrl: 'https://127.0.0.1:545',
+          serverUrl: 'https://127.0.0.1:54562',
           namespace: 'webapps'
         ) {
           sh '''
