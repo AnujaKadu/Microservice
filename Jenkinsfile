@@ -9,6 +9,23 @@ pipeline {
         PATH = "/usr/local/bin:$PATH"
      }
      stages {
+    stage('Verify K8s Connection') {
+      steps {
+        withKubeConfig(
+          credentialsId: 'kube-8',
+          serverUrl: 'https://127.0.0.1:545',
+          namespace: 'webapps'
+        ) {
+          sh '''
+            echo "Using Kubeconfig"
+            kubectl version
+            kubectl get pods -n webapps
+          '''
+        }
+      }
+    }
+  }
+     stages {
         stage('Check kubectl') {
             steps {
                 sh '''
