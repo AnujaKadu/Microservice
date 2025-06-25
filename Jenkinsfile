@@ -31,8 +31,8 @@ pipeline {
         stage('Verify the Deployment') {
             steps {
                withKubeConfig(caCertificate: '', clusterName: 'kind-test', contextName: '', credentialsId: KUBERNETES_CREDENTIALS_ID, namespace: NAMESPACE, restrictKubeConfigAccess: false, serverUrl: KUBERNETES_URL) {
-                        sh "kubectl get pods -n webapps"
-                        sh "kubectl get svc -n webapps"
+                        sh "kubectl get pods -n NAMESPACE"
+                        sh "kubectl get svc -n NAMESPACE"
                 }
             }
         }    
