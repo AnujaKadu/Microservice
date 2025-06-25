@@ -21,7 +21,7 @@ pipeline {
         }
        stage('Run kubectl') {
             steps {
-                withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: KUBERNETES_CREDENTIALS_ID, namespace: NAMESPACE, restrictKubeConfigAccess: false, serverUrl: KUBERNETES_URL) {
+                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'kind-test', contextName: '', credentialsId: 'test', namespace: 'test', serverUrl: 'https://127.0.0.1:57253']]) {
                     echo "Connected to k8"
                     sh "kubectl version"
                     sh "kubectl apply -f deployment-service.yml"
