@@ -3,7 +3,7 @@ pipeline {
 
      environment {
         KUBECONFIG= '/Users/anujakadu/.kube/config'
-        KUBERNETES_URL= 'https://127.0.0.1:57253'
+        KUBERNETES_URL= 'https://127.0.0.1:57253/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy'
         NAMESPACE= 'test'
         KUBERNETES_CREDENTIALS_ID= 'test' 
         PATH = "/usr/local/bin:$PATH"
