@@ -8,7 +8,6 @@ pipeline {
         KUBERNETES_CREDENTIALS_ID= 'kind-kubeconfig' 
         PATH = "/usr/local/bin:$PATH"
      }
-     
      stages {
         stage('Check kubectl') {
             steps {
