@@ -3,7 +3,7 @@ pipeline {
 
      environment {
         KUBECONFIG= '/Users/anujakadu/.kube/config'
-        KUBERNETES_URL= 'https://127.0.0.1:57253/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy'
+        KUBERNETES_URL= 'https://127.0.0.1:57253'
         NAMESPACE= 'test'
         KUBERNETES_CREDENTIALS_ID= 'test' 
         PATH = "/usr/local/bin:$PATH"
@@ -21,7 +21,7 @@ pipeline {
         }
        stage('Run kubectl') {
             steps {
-                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'kind-test', contextName: '', credentialsId: 'test', namespace: 'test', serverUrl: 'https://127.0.0.1:57253']]) {
+                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: KUBERNETES_CREDENTIALS_ID, namespace: NAMESPACE, restrictKubeConfigAccess: false, serverUrl: KUBERNETES_URL) {
                     echo "Connected to k8"
                     sh "kubectl version"
                     sh "kubectl apply -f deployment-service.yml"
